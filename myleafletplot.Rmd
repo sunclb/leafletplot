@@ -1,0 +1,28 @@
+---
+title: "My 5 days tour in Singapore"
+author: "Sun Huiyuan"
+date: "10 Feb 2018"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+library(leaflet)
+```
+
+
+```{r data,echo=FALSE }
+place<-c("East Coast Park","Merlion Park","Garden by the Bay","Sands sky park","Universal Studios","Sentosa Island","Botanic Gardens","Singapore Zoo","River Safari")
+lat<-c(1.302496,1.286775,1.283291,1.284818,1.254067,1.253875,1.316341,1.404324,1.403767)
+lng<-c(103.9187,103.8544,103.8661,103.8609,103.8239,103.8244,103.8162,103.7930,103.7927)
+myplaces<-data.frame(place,lat,lng)
+```
+```{r load map,echo=FALSE,message=FALSE}
+greenLeafIcon <- makeIcon(
+  iconUrl = "http://www.falmouthwaters.org/wp-content/uploads/2015/06/greenfootprint.png",
+  iconWidth = 30, iconHeight = 30,
+)
+
+leaflet(data = myplaces) %>% addTiles() %>%
+  addMarkers(icon = greenLeafIcon,popup = myplaces$place)
+```
+
